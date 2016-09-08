@@ -37,6 +37,7 @@ public class BaiduPage {
         inputTextField.sendKeys(content);
         this.searchButton.click();
         waitForElement(driver, theFristDiv);
+
     }
 
     public WebElement waitForElement(WebDriver driver, final WebElement element) {
