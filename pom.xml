@@ -16,19 +16,26 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>LATEST</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.8</version>
 		</dependency>
 
 	</dependencies>
-	
-	
+
 	<repositories>
 		<repository>
-			<id>nexus</id>
-			<name>local private nexus</name>
-			<url>http://100.66.163.124：8081/nexus/content/groups/public</url>
+			<id>JDB</id>
+			<name>H5AutomationNexus</name>
+			<url>http://localhost:8081/nexus/content/repositories/JDB</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -36,10 +43,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
 		<repository>
-			<id>nexus-snapshots</id>
-			<name>local private nexus</name>
-			<url>http://100.66.163.124:8081/nexus/content/groups/public-snapshots</url>
+			<id>JDBSnapshot</id>
+			<name>H5AutomationNexusSnapshot</name>
+			<url>http://localhost:8081/nexus/content/repositories/JDBSnapshot</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -47,29 +55,36 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+
 	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>local private nexus</name>
-			<url>http://100.66.163.124:8081/nexus/content/groups/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>nexus-snapshots</id>
-			<name>local private nexus</name>
-			<url>http://100.66.163.124:8081/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>JDB</id>
+			<name>H5AutomationNexus</name>
+			<url>http://localhost:8081/nexus/content/repositories/JDB</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>JDBSnapshot</id>
+			<name>H5AutomationNexusSnapshot</name>
+			<url>http://localhost:8081/nexus/content/repositories/JDBSnapshot</url>
+		</snapshotRepository>
+
+	</distributionManagement>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

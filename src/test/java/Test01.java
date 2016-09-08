@@ -1,21 +1,29 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.ios.IOSDriver;
+
 public class Test01 {
+    AppiumDriver driver;
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+
+    @BeforeClass()
+    public void init() throws MalformedURLException {
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone 5s");
+        capabilities.setCapability("browser", "safari");
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
 
     @Test
-    public void tesJenkins() throws InterruptedException {
-        System.out.println("Test begin!!!");
-        DesiredCapabilities dc = DesiredCapabilities.firefox();
-        WebDriver driver = new RemoteWebDriver(dc);
+    public void googleTest() {
         driver.get("http://www.baidu.com");
-        Thread.sleep(10000);
-        driver.get("http://www.google.com");
-        Thread.sleep(10000);
-        System.out.println("Test over!!!");
-        driver.close();
     }
 }
